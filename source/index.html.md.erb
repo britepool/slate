@@ -1,0 +1,157 @@
+---
+title: API Reference
+
+language_tabs: # must be one of https://git.io/vQNgJ
+  - javascript
+  - shell
+  - python
+
+toc_footers:
+  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+
+includes:
+  - errors
+
+search: true
+---
+
+# Introduction
+
+FUBAR Welcome to the BritePool API. It's Awesome.
+
+This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+
+# Metrics
+## Request Object Definition
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+t | true | Metric Type - The metric or event name such as AdWin,BidRequested,BidReturned, etc
+d | true | Domain requested from
+pu | sometimes |  Publisher ID is the ID of the publisher who requested the bid
+si | sometimes | SiteID is the ID of the site in the SSP's system which is passed in the ORTB request
+bp | true | BritePool ID of the identified user provided in the bid stream request to the SSP/DSP
+o | false | Other IDs for the user, JSON object of id names as the key and the value being that id value
+sz | false | Size of the creative delivered like 300x250
+c | true | CPM of the final bid price for the creative in dollars and cents 5.7345
+mt | false | MediaType of the creative such as display, video, outstream
+bi | sometimes | BuyerID in the DSP system for whatever agency or advertiser won
+aid | sometimes | AuctionID provided in the OpenRTB request from the SSP
+cs | false | ConsentString if provided in the bid request should be included
+di | false | DealID if there was a dealID for the creative provide it here
+ss | false | Name or ID of the SSP who requested the bid
+a |  sometimes | APIKey - Normally included as header, only accepted as a param for image/pixel type requests
+
+## Ad Win Notification - JSON
+
+```python
+import requests
+url = '<%= config[:metrics_endpoint] %>'
+headers = {'x-api-key': 'REPLACE_WITH_YOUR_API_KEY'}
+payload = {}
+r = requests.post(url, headers=headers,data)
+```
+
+```shell
+curl "<%= config[:metrics_endpoint] %>"
+  -H "X-API-KEY: REPLACE_WITH_YOUR_API_KEY"
+```
+
+```javascript
+let url = '<%= config[:metrics_endpoint] %>';
+let headers = {'x-api-key': 'REPLACE_WITH_YOUR_API_KEY'}
+
+fetch(url, {method: 'POST', headers}).then((result) => {
+	console.log("RESPONSE: " , result);
+})
+```
+
+> The above command returns JSON structured like this:
+
+```json
+"OK"
+```
+
+Metric type of "adWin".
+
+### HTTP Request
+
+`POST ` <%= config[:metrics_endpoint] %>
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+t | true | Metric Type - AdWinNotification
+d | true | Domain requested from
+ss | false | Name or ID of the SSP who requested the bid
+pu | true |  Publisher ID is the ID of the publisher who requested the bid
+si | true | SiteID is the ID of the site in the SSP's system which is passed in the ORTB request
+bp | true | BritePool ID of the identified user provided in the bid stream request to the SSP/DSP
+o | false | Other IDs for the user, JSON object of id names as the key and the value being that id value
+sz | false | Size of the creative delivered like 300x250
+c | true | CPM of the final bid price for the creative in dollars and cents 5.7345
+mt | false | MediaType of the creative such as display, video, outstream
+bi | true | BuyerID in the DSP system for whatever agency or advertiser won
+aid | true | AuctionID provided in the OpenRTB request from the SSP
+cs | false | ConsentString if provided in the bid request should be included
+di | false | DealID if there was a dealID for the creative provide it here
+
+<aside class="success">
+Remember — Include your API Key as x-api-key Request header
+</aside>
+
+## Get a Specific Kitten
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get(2)
+```
+
+```python
+import requests
+url = 'https://api.github.com/some/endpoint'
+headers = {'x-api-key': 'REPLACE_WITH_YOUR_API_KEY'}
+payload = {}
+r = requests.post(url, headers=headers,data)
+
+```
+
+```shell
+curl "http://example.com/api/kittens/2"
+  -H "Authorization: meowmeowmeow"
+```
+
+```javascript
+const kittn = require('kittn');
+
+let api = kittn.authorize('meowmeowmeow');
+let max = api.kittens.get(2);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+"OK"
+```
+
+This endpoint retrieves a specific kitten.
+
+<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+
+### HTTP Request
+
+`GET http://example.com/kittens/<ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the kitten to retrieve
+
+
+

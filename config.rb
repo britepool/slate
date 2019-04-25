@@ -1,6 +1,14 @@
 # Unique header generation
 require './lib/unique_head.rb'
 
+# Global Variables
+
+epoint = 'https://api.britepool.com/v1/'
+set :endpoint, epoint
+config[:endpoint]
+set :metrics_endpoint, epoint + "/metrics"
+config[:metrics_endpoint]
+
 # Markdown
 set :markdown_engine, :redcarpet
 set :markdown,
