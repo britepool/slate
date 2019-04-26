@@ -1,4 +1,6 @@
 ## Bid Requested - DSP
+Whenever a bid request with an associated BritePool ID is sent to a Demand Side Platform, the protocol for a *Bid Requested - DSP* should be followed. All the information regarding the requested bid is included in the associated "bidRequested" metric.
+
 
 <%= partial "includes/dsp_bid_requested_javascript.md.erb" %>
 
@@ -8,28 +10,34 @@
 "OK"
 ```
 
-Metric type of "bidRequested" is for when a bid is returned to the requesting SSP
+
 
 ### HTTP Request
+
+BritePool bid requests are sent via the HTTP protocol.
 
 `POST ` <%= config[:metrics_endpoint] %>
 
 ### POST DATA Parameters
 
-Parameter | Required | Description
---------- | ------- | -----------
-t | true | Metric Type = bidRequested
-d | true | Domain requested from
-pu | true |  Publisher ID is the ID of the publisher who requested the bid
-si | true | SiteID is the ID of the site in the SSP's system which is passed in the ORTB request
-bp | true | BritePool ID of the identified user provided in the bid stream request to the SSP/DSP
-o | false | Other IDs for the user, JSON object of id names as the key and the value being that id value
-sz | false | Size of the creative delivered like 300x250
-c | true | CPM of the final bid price for the creative in dollars and cents 5.7345
-ct | false | CreativeType of the creative such as display, video, outstream
-bi | true | BuyerID in the DSP system for whatever agency or advertiser won
-aid | true | AuctionID provided in the OpenRTB request from the SSP
-cs | false | ConsentString if provided in the bid request should be included
-di | false | DealID if there was a dealID for the creative provide it here
-ss | false | Name or ID of the SSP who requested the bid
+All BritePool bid requests use the "bidRequested" metric type, which contains the following POST data parameters.
+
+Parameter | Required | Type | Description
+--------- | -------- | ----- | -----------
+t | true | string | Metric type. A unique identifier that specifies the curernt metric type. For Bid Requests it must be set to "bidRequested".
+d | true | string | Requesting domain. The domain of the site requesting the bid.
+pu | true |  string | Publisher ID. The unique ID assigned to the publisher who is requesting the bid.
+si | true | string | Site ID. The unique ID of the site in the SSP's system which is included in the OpenRTB request.
+bp | true | string | BritePool ID. The unique ID assigned by BritePool to the identified user. It is provided in the bid stream request to the SSP/DSP.
+o | false | object | Other user IDs. A JSON object that includes other user identifies in key-value pairs, where the key is the type of user ID, for example "DigiTrust", and the value is the corresponing ID assigned to the current user.
+sz | false | string | Size. Size of the delivered creative. It should be in the form widthxheight, for example, "728x90".
+c | true | string | CPM. The CPM of the final bid price. It is in dollars and cents, for instance, "5.7345".
+ct | false | string | Creative type. The creative type, such as "display", "video", "outstream".
+bi | true | string | Buyer ID. The unique ID in the DSP system of the agency or advertiser that won the bid.
+aid | true | string | Auction ID. The unique auction ID provided by the SSP in the OpenRTB bid request.
+cs | false | string | Consent string. The IAB consent string for GDPR compliance. If a consent string is provided in the bid request, it *must* be included in the Ad Win Notification.
+di | false | string | Deal ID. If the bid has an associated deal ID, it should be provided in this field.
+ss | false | string | SSP name. The name or ID of the SSP that requested the bid.
+
+
 
