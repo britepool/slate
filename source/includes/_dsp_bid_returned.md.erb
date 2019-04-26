@@ -1,13 +1,6 @@
-## Bid Requested - DSP
+## Bid Returned - DSP
 
-```javascript
-let url = '<%= config[:metrics_endpoint] %>';
-let headers = {'x-api-key': 'REPLACE_WITH_YOUR_API_KEY'}
-
-fetch(url, {method: 'POST', headers, data}).then((result) => {
-	console.log("RESPONSE: " , result);
-})
-```
+<%= partial "includes/dsp_bid_returned_javascript.md.erb" %>
 
 > The above command returns JSON structured like this:
 
@@ -15,7 +8,7 @@ fetch(url, {method: 'POST', headers, data}).then((result) => {
 "OK"
 ```
 
-Metric type of "bidRequested" is for when a bid is requested by a SSP
+Metric type of "bidReturned" is for when a bid is returned to an SSP that requested one
 
 ### HTTP Request
 
@@ -25,7 +18,7 @@ Metric type of "bidRequested" is for when a bid is requested by a SSP
 
 Parameter | Required | Description
 --------- | ------- | -----------
-t | true | Metric Type = adWin
+t | true | Metric Type = bidReturned
 d | true | Domain requested from
 pu | true |  Publisher ID is the ID of the publisher who requested the bid
 si | true | SiteID is the ID of the site in the SSP's system which is passed in the ORTB request
@@ -33,7 +26,7 @@ bp | true | BritePool ID of the identified user provided in the bid stream reque
 o | false | Other IDs for the user, JSON object of id names as the key and the value being that id value
 sz | false | Size of the creative delivered like 300x250
 c | true | CPM of the final bid price for the creative in dollars and cents 5.7345
-mt | false | MediaType of the creative such as display, video, outstream
+ct | false | CreativeType of the creative such as display, video, outstream
 bi | true | BuyerID in the DSP system for whatever agency or advertiser won
 aid | true | AuctionID provided in the OpenRTB request from the SSP
 cs | false | ConsentString if provided in the bid request should be included

@@ -1,0 +1,35 @@
+```javascript
+let url = '<%= config[:metrics_endpoint] %>';
+let headers = {'x-api-key': 'REPLACE_WITH_YOUR_API_KEY', 'Content-Type': 'application/json'}
+let EventData = {
+	"Domain": "https://www.publisher.com",
+	"SSP": "some-ssp",
+	"PublisherID": "12345",
+	"SiteID": "654321",
+	"BritePoolID": "gf42-sfgasf-2342-asdd",
+	"OtherIds": {"mm": "54321ab"},
+	"Size": "300x250",
+	"MediaType": "banner",
+	"AuctionID": "1234567abcd",
+	"ConsentString": "",
+	"DealID": "DS12345"
+};
+let formattedData = {
+	"t": "bidRequested",
+	"d": "https://www.publisher.com",
+	"ss": "some-ssp",
+	"pu": "12345",
+	"si": "654321",
+	"bp": "gf42-sfgasf-2342-asdd",
+	"o": {"mm": "54321ab"},
+	"sz": "300x250",
+	"ct": "banner",
+	"aid": "1234567abcd",
+	"cs": ""
+};
+
+
+request(url, {method: 'POST', headers, data: JSON.stringify(formattedData}).then((result) => {
+	console.log("RESPONSE: " , result);
+})
+```

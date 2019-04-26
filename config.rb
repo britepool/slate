@@ -6,7 +6,7 @@ require './lib/unique_head.rb'
 epoint = 'https://api.britepool.com/v1/'
 set :endpoint, epoint
 config[:endpoint]
-set :metrics_endpoint, epoint + "/metrics"
+set :metrics_endpoint, epoint + "metrics"
 config[:metrics_endpoint]
 
 # Markdown
