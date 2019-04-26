@@ -3,10 +3,10 @@ require './lib/unique_head.rb'
 
 # Global Variables
 
-epoint = 'https://api.britepool.com/v1/'
+epoint = 'https://api.britepool.com/v1'
 set :endpoint, epoint
 config[:endpoint]
-set :metrics_endpoint, epoint + "metrics"
+set :metrics_endpoint, 'https://api.britepool.com/v1/metrics'
 config[:metrics_endpoint]
 
 # Markdown
