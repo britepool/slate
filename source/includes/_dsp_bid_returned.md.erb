@@ -1,18 +1,5 @@
 ## Bid Requested - DSP
 
-```python
-import requests
-url = '<%= config[:metrics_endpoint] %>'
-headers = {'x-api-key': 'REPLACE_WITH_YOUR_API_KEY'}
-payload = {}
-r = requests.post(url, headers=headers,data)
-```
-
-```shell
-curl "<%= config[:metrics_endpoint] %>"
-  -H "X-API-KEY: REPLACE_WITH_YOUR_API_KEY"
-```
-
 ```javascript
 let url = '<%= config[:metrics_endpoint] %>';
 let headers = {'x-api-key': 'REPLACE_WITH_YOUR_API_KEY'}

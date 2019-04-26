@@ -1,0 +1,53 @@
+
+```javascript
+let url = '<%= config[:metrics_endpoint] %>';
+let EventData = {
+	"Domain": "https://www.publisher.com",
+	"SSP": "some-ssp",
+	"PublisherID": "12345",
+	"SiteID": "654321",
+	"BritePoolID": "gf42-sfgasf-2342-asdd",
+	"OtherIds": {
+		"mm": "54321ab"
+	},
+	"Size": "300x250",
+	"CPM": 5.87,
+	"MediaType": "banner",
+	"BuyerID": "654321",
+	"AuctionID": "1234567abcd",
+	"ConsentString": "",
+	"DealID": "DS12345"
+};
+
+let formattedData = {
+	"t": "adWin",
+	"d": "https://www.publisher.com",
+	"ss": "some-ssp",
+	"pu": "12345",
+	"si": "654321",
+	"bp": "gf42-sfgasf-2342-asdd",
+	"o": {
+		"mm": "54321ab"
+	},
+	"sz": "300x250",
+	"c": 5.87,
+	"ct": "banner",
+	"bi": "654321",
+	"aid": "1234567abcd",
+	"cs": "",
+	"di": "DS12345"
+};
+
+// Using the JSON POST API ---
+
+
+
+let queryString = Object.keys(formattedData).reduce((magic, key) => {
+        magic.push(`${key}=${encodeURIComponent(formattedData[key)}`)
+}, []).join("&");
+let element = document.createElement('img');
+img.src = `${url}?${queryString}`;
+// Add the pixel to the page
+document.body.appendChild(element);
+
+```
