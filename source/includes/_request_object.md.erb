@@ -3,7 +3,7 @@
 
 Parameter | Required | Description
 --------- | ------- | -----------
-t | true | Metric Type - The metric or event name such as AdWin,BidRequested,BidReturned, etc
+t | true | Metric Type - The metric or event name such as adWin,bidRequested,bidReturned, etc
 d | true | Domain requested from
 pu | sometimes |  Publisher ID is the ID of the publisher who requested the bid
 si | sometimes | SiteID is the ID of the site in the SSP's system which is passed in the ORTB request
@@ -11,7 +11,7 @@ bp | true | BritePool ID of the identified user provided in the bid stream reque
 o | false | Other IDs for the user, JSON object of id names as the key and the value being that id value
 sz | false | Size of the creative delivered like 300x250
 c | true | CPM of the final bid price for the creative in dollars and cents 5.7345
-mt | false | MediaType of the creative such as display, video, outstream
+ct | false | CreativeType of the creative such as display, video, outstream
 bi | sometimes | BuyerID in the DSP system for whatever agency or advertiser won
 aid | sometimes | AuctionID provided in the OpenRTB request from the SSP
 cs | false | ConsentString if provided in the bid request should be included
